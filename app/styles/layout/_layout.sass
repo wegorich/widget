@@ -1,0 +1,35 @@
+#migreat-widget
+  width: 98%
+  height: 99%
+  margin: .5% auto
+  border-top: 3px solid $wb-head
+  background: rgba($wb-blurb, .84)
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26)
+  box-sizing: border-box
+  overflow: hidden
+  position: relative
+
+  .mw-header, .mw-form
+    opacity: 0
+    transition: opacity .3s
+  &.ng-scope
+    .mw-header, .mw-form
+      opacity: 1
+
+html, body
+  height: 99%
+
+body
+  font-family: 'Source Sans Pro', sans-serif
+  font-weight: 400
+  font-style: normal
+  line-height: 1.1
+  margin: 0
+  -webkit-backface-visibility: hidden
+
+.animated
+  +animate-prefixer(animation-duration, $base-duration * .5)
+  +animate-prefixer(animation-fill-mode, both)
+
+  &.hinge
+    +animate-prefixer(animation-duration, $base-duration * 2)

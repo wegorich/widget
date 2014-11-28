@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="Migreat.com widget">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="../bower_components/angular-ui-select/dist/select.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="widgetApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <section id="migreat-widget" ng-controller="MainCtrl">
+      <header class="mw-header" ng-class="{'mw-h-end': params.showEndForm}">
+        <div>
+          <h3 class="mw-h-visa-type animated bounceIn">{{params.title}}</h3>
+        </div>
+        <div ng-if="question.question"><span class="mw-h-title animated hinge fadeIn">{{question.question}}</span></div>
+        <div ng-if="params.showEndForm">
+          <a class="mw-h-title animated hinge bounceIn btn" ng-href="{{params.url}}">{{lastInfo.btn}}</a>
+          <small class="mw-descr animated hinge fadeIn">
+            <span class="mw-descr-item" ng-repeat="i in params.selected">{{i.answer.title}}</span>
+            <a class="mw-result animated fadeIn" ng-click="reset()">Reset</a>
+          </small>
+        </div>
+      </header>
+      <form class="mw-form" ng-class="{'animated': question}">
+        <ui-select ng-model="params.curAnswer"
+                   theme="selectize"
+                   ng-disabled="disabled"
+                   on-select="answerSelected($item, $model)">
+          <ui-select-match placeholder="{{question.placeholder}}">{{$select.selected.title}}</ui-select-match>
+          <ui-select-choices  repeat="a in question.answers | filter: $select.search">
+            <span ng-bind-html="a.title | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+      </form>
+    </section>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/services/backend.js"></script>
+        <script src="scripts/services/api.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
