@@ -5,7 +5,6 @@ My first experience in embeddable iframe widget
 
 to run:
 
-npm install
-bower install
-
-grunt serve
+1. npm install
+2. bower install
+3. grunt serve
